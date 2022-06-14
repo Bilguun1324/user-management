@@ -13,10 +13,11 @@ mutation Mutation($firstName: String, $email: String, $lastName: String, $role: 
 `
 
 export const ADD_GROUP = gql`
-mutation Mutation($name: String, $members: [member]) {
-  addGroup(name: $name, members: $members) {
+mutation AddGroup($name: String, $members: [member], $description: String) {
+  addGroup(name: $name, members: $members, description: $description) {
     _id
     name
+    description
     members {
       uid
       permission

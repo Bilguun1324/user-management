@@ -17,6 +17,7 @@ query Query {
   getGroups {
     name
     _id
+    description
     members {
       uid
       permission

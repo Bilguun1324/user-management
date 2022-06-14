@@ -6,7 +6,7 @@ import { GroupSchema, WarningBox, GROUP_FORM } from '../common';
 
 type InputType = {
     field: {
-        name: 'name'
+        name: 'name' | 'description'
     }
     form: any
 }
@@ -38,6 +38,7 @@ export const AddGroupModal = ({ setOpen }: any) => {
         <Formik
             initialValues={{
                 name: '',
+                description: ''
             }}
             validationSchema={GroupSchema}
             onSubmit={values => {
@@ -54,6 +55,7 @@ export const AddGroupModal = ({ setOpen }: any) => {
                 alignItems: 'center'
             }}>
                 <Field name='name' component={Input} />
+                <Field name='description' component={Input} />
                 <Button type='submit' variant='outlined'>
                     Group нэмэх
                 </Button>

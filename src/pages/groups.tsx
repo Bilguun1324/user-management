@@ -7,7 +7,7 @@ export const Groups = () => {
 
     return (
         <Box>
-            <Button type='submit' variant='outlined' onClick={() => setOpen(true)}>ADD GROUP</Button>
+            <Button type='submit' variant='outlined' onClick={() => setOpen(true)}>БАГ ҮҮСГЭХ</Button>
             <GroupsDashboard />
             <CustomModal open={open} setOpen={setOpen}>
                 <AddGroupModal setOpen={setOpen}/>

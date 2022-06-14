@@ -1,7 +1,8 @@
 export const LAST_NAME = 'Овог';
 export const FIRST_NAME = 'Нэр';
 export const EMAIL = 'Мэйл';
-export const ROLE = 'Албан тушаал'
+export const ROLE = 'Албан тушаал';
+export const DESCRIPTION = 'Дэлгэрэнгүй'
 export const USER_FORM = {
   firstName: { name: FIRST_NAME, placeholder: 'Батаа' },
   lastName: { name: LAST_NAME, placeholder: 'Балдан' },
@@ -9,5 +10,6 @@ export const USER_FORM = {
   role: { name: ROLE, placeholder: 'CEO' }
 };
 export const GROUP_FORM = {
-  name: { name: FIRST_NAME, placeholder: 'HELLOO' },
+  name: { name: FIRST_NAME, placeholder: 'MCS' },
+  description: { name: DESCRIPTION, placeholder: 'World number one compnay' },
 }

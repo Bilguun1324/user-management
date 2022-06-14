@@ -1,8 +1,9 @@
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_USERS, INVITE_USER_TO_GROUP, GET_GROUPS } from '../../graphql';
-import { Box, Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
+import { Box } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-import { CustomModal } from '../common';
+import { CustomModal, DESCRIPTION, EMAIL, FIRST_NAME, LAST_NAME } from '../common';
 import { useState } from 'react';
 
 export const UsersDashboard = () => {
@@ -25,17 +26,18 @@ export const UsersDashboard = () => {
             uid: uid,
             permission: permission,
         }
+        console.log(values)
         inviteUser({ variables: values })
         setOpen(false)
     }
 
     const columns = [
-        { field: 'firstName', headerName: 'Нэр', width: 150 },
-        { field: 'lastName', headerName: 'Өвог', width: 150 },
-        { field: 'email', headerName: 'Имэйл хаяг', width: 170 },
+        { field: 'firstName', headerName: FIRST_NAME, width: 150 },
+        { field: 'lastName', headerName: LAST_NAME, width: 150 },
+        { field: 'email', headerName: EMAIL, width: 170 },
         { field: 'role', headerName: 'Албан тушаал', width: 150 },
         {
-            field: 'Дэлгэрэнгүй', width: 170, renderCell: (cellValue: any) => {
+            field: DESCRIPTION, width: 170, renderCell: (cellValue: any) => {
                 return (
                     <Button
                         variant="contained"
@@ -43,7 +45,7 @@ export const UsersDashboard = () => {
                         size='small'
                         onClick={() => renderModal(cellValue.row._id)}
                     >
-                        INVITE TO GROUP
+                        БАГ-Д НЭМЭХ
                     </Button>
                 );
             },
@@ -52,7 +54,7 @@ export const UsersDashboard = () => {
 
     return (
         <Box>
-            {loading && <Box>loading</Box>}
+            {loading && <Box>Уншиж байна...</Box>}
             <DataGrid
                 sx={{ height: 640, width: 800 }}
                 getRowId={(row) => row._id}
@@ -62,8 +64,12 @@ export const UsersDashboard = () => {
                 disableSelectionOnClick
             />
             <CustomModal open={open} setOpen={setOpen}>
-                {grpData && grpData.getGroups.map((grp: any, i: number) => <Box key={i} onClick={() => setGroup({ name: grp.name, id: grp._id })}> {grp.name} </Box>)}
-                {group.name}
+                {grpData && grpData.getGroups.map((grp: any, i: number) =>
+                    <Box
+                        sx={{ width: 100, height: 20, cursor: 'pointer', background: group.id == grp._id ? 'gray' : 'white' }}
+                        key={i} onClick={() => setGroup({ name: grp.name, id: grp._id })}>
+                        {grp.name}
+                    </Box>)}
                 <TextField value={permission} onChange={(e) => setPermission(e.target.value)} placeholder='DEV OPS' />
                 <Button
                     variant="contained"
@@ -71,7 +77,7 @@ export const UsersDashboard = () => {
                     size='small'
                     onClick={() => invite()}
                 >
-                    INVITE
+                    УРИХ
                 </Button>
             </CustomModal>
         </Box>

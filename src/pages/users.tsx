@@ -7,7 +7,7 @@ export const Users = () => {
 
     return (
         <Box>
-            <Button type='submit' variant='outlined' onClick={() => setOpen(true)}>ADD USER</Button>
+            <Button type='submit' variant='outlined' onClick={() => setOpen(true)}>ХЭРЭГЛЭГЧ НЭМЭХ</Button>
             <UsersDashboard />
             <CustomModal open={open} setOpen={setOpen}>
                 <AddUserModal setOpen={setOpen} />
